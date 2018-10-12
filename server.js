@@ -1,7 +1,7 @@
 const express = require('express')
 const hbs = require('hbs')
 const fs = require('fs')
-
+const port = process.env.PORT || 3000;
 var app = express();
 
 app.use((req,res,next)=>{  //middleware
@@ -13,12 +13,12 @@ app.use((req,res,next)=>{  //middleware
         )
     next();
 })
-app.use((req,res,next)=>{  //middleware
+// app.use((req,res,next)=>{  //middleware
 
-        res.render('maintenance.hbs',{
-            pageTitile:'maintainance Page'
-     })
-})
+//         res.render('maintenance.hbs',{
+//             pageTitile:'maintainance Page'
+//      })
+// })
 
 hbs.registerHelper('getCurrentYear',()=>{
     return new Date().getFullYear();
@@ -48,4 +48,6 @@ app.get('/about',(req,res)=>{
     
  })
 
-app.listen(3000);
+app.listen(port,()=>{
+    console.log(`server is working on port${port}`)
+});
